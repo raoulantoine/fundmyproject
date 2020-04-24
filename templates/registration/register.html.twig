@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer mon compte{% endblock %}
+
+{% block body %}
+    <div class="container container-fluid">
+        <h1>Créer mon compte</h1>
+
+        {{ form_start(registrationForm) }}
+
+        {{ form_row(registrationForm.firstname) }}
+        {{ form_row(registrationForm.lastname) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.password) }}
+
+        <button type="submit" class="btn btn-success">
+            <i class="fa fa-user-plus"></i>
+            Créer mon compte
+        </button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Bienvenue sur Fund My Project</h1>
+        <p>Aidez-nous à créer de nouveaux projets chaque jour !</p>
+        <div class="row">
+            {% for project in projects %}
+                {{ include('project/_thumbnailproject.html.twig') }}
+            {% endfor %}
+        </div>
+        <div>
+{#            {% include'project/_form.html.twig' with {'form' : projectForm} %}#}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %}Project{% endblock %}
+{% block body %}
+    <main class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <img src="{{ asset('uploads/' ~ project.image) }}" alt="{{ project.name }}">
+                </div>
+                <div class="col-8">
+                    <h1>{{ project.name }}</h1>
+                    <ul class="badges">
+                        {% for category in project.categories %}
+                            <li><a class="badge badge-pill badge-primary"
+                                   href="{{ path('category_show' , {'id':category.id}) }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <p>{{ project.description }}</p>
+                </div>
+            </div>
+            <div class="goal">Objectif : {{ project.goal }}€</div>
+            <ul>
+                {% for contribution in project.contributions %}
+
+                    <li>{{ contribution.amount }} {{ contribution.user.firstname }}</li>
+
+                {% endfor %}
+            </ul>
+
+            <div class="progress">
+                {% set totalAmount = 0 %}
+                {% set progressTotal = 0 %}
+                {% for contribution in project.contributions %}
+                    {% set totalAmount = totalAmount + contribution.amount %}
+                    {% set progressTotal = (totalAmount * 100) / project.goal %}
+                {% endfor %}
+                <div class="progress-bar bg-info" style="width: {{ progressTotal }} "> {{ totalAmount }}€</div>
+            </div>
+            {{ progressTotal }}
+            <form>
+                <div class="form-group">
+                    <input type="number" value="10" placeholder="Montant">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-money"></i>
+                        Je donne !
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}
